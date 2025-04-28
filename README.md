@@ -83,125 +83,28 @@ The frontend will be available at http://localhost:3000.
 {
   "status": "success",
   "original": "السلام علیکم",
-  "romanized": "assalamu alaikum",
   "devanagari": "अस्सलामु अलैकुम"
 }
 ```
 
-### 2. Transliterate Word (with multiple options)
+### 2. API Information
 
-**Endpoint:** `/transliterate-word`
-
-**Method:** POST
-
-**Request Body:**
-```json
-{
-  "word": "السلام",
-  "topk": 5,
-  "beam_width": 10
-}
-```
-
-**Success Response:**
-```json
-{
-  "status": "success",
-  "original": "السلام",
-  "romanized": "assalamu",
-  "devanagari_options": ["अस्सलामु", "असलामु", "अस्सलाम", ...]
-}
-```
-
-### 3. Transliterate Sentence
-
-**Endpoint:** `/transliterate-sentence`
-
-**Method:** POST
-
-**Request Body:**
-```json
-{
-  "sentence": "السلام علیکم"
-}
-```
-
-**Success Response:**
-```json
-{
-  "status": "success",
-  "original": "السلام علیکم",
-  "romanized": "assalamu alaikum",
-  "devanagari": "अस्सलामु अलैकुम"
-}
-```
-
-### 4. Add Fallback Mapping
-
-**Endpoint:** `/add-fallback-mapping`
-
-**Method:** POST
-
-**Request Body:**
-```json
-{
-  "urdu": "میرا نام محمد ہے",
-  "latin": "mera naam muhammad hai"
-}
-```
-
-**Success Response:**
-```json
-{
-  "status": "success",
-  "message": "Fallback mapping added successfully",
-  "urdu": "میرا نام محمد ہے",
-  "latin": "mera naam muhammad hai",
-  "total_mappings": 3
-}
-```
-
-### 5. Get Fallback Mappings
-
-**Endpoint:** `/fallback-mappings`
+**Endpoint:** `/`
 
 **Method:** GET
 
 **Success Response:**
 ```json
 {
-  "status": "success",
-  "mappings": {
-    "السلام علیکم": "assalamu alaikum",
-    "شکریہ": "shukriya"
-  },
-  "count": 2
+  "name": "Urdu to Devanagari Transliteration API",
+  "description": "Convert Urdu text to Devanagari script",
+  "endpoints": [
+    {
+      "path": "/transliterate",
+      "method": "POST",
+      "body": {"text": "Urdu text to transliterate"},
+      "description": "Transliterate Urdu text to Devanagari"
+    }
+  ]
 }
-```
-
-## Testing
-
-You can test the API using the provided test script:
-
-```bash
-python test_urdu_api.py
-```
-
-## Current Limitations
-
-The transliteration tool has a few limitations:
-
-1. Quality of transliteration depends on AI4Bharat's underlying models
-2. Some Urdu phrases or words may not transliterate perfectly due to phonetic differences
-3. Very specialized or technical Urdu terms might need manual fallback mappings
-4. Performance may vary with long or complex text
-
-## Future Improvements
-
-Potential enhancements to the system:
-
-1. Improved frontend UI with pronunciation guides
-2. Support for batch processing of multiple texts
-3. User accounts to save frequently used phrases
-4. Integration with speech synthesis for pronunciation
-5. Enhanced error handling and feedback mechanisms 
+``` 
